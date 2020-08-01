@@ -25,6 +25,9 @@ Route.get('/', async () => {
 })
 
 Route.group(() => {
-  Route.get('/products', 'ProductsController.getProducts')
-  Route.post('/products', "ProductsController.storeProducts")
+  Route.get('/getproducts', 'ProductsController.getProducts')
+  Route.get('/getproduct', "ProductsController.getOneProduct")
+  Route.post('/updateproduct', "ProductsController.updateProduct")
+  Route.post('/deleteproduct', "ProductsController.deleteProduct")
+  Route.post('/storeproduct', "ProductsController.storeProducts")
 }).prefix('api')
