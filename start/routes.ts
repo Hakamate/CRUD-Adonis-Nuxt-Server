@@ -30,4 +30,9 @@ Route.group(() => {
   Route.post('/updateproduct', "ProductsController.updateProduct")
   Route.post('/deleteproduct', "ProductsController.deleteProduct")
   Route.post('/storeproduct', "ProductsController.storeProducts")
+
+
+  Route.post("login", "AuthController.login");
+  Route.post("register", "AuthController.register");
+  Route.get("me", "AuthController.me").middleware('auth')
 }).prefix('api')

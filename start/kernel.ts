@@ -23,7 +23,7 @@ import Server from '@ioc:Adonis/Core/Server'
 Server.middleware.register([
   'Adonis/Core/BodyParserMiddleware',
 ])
-
+ 
 /*
 |--------------------------------------------------------------------------
 | Named middleware
@@ -41,4 +41,6 @@ Server.middleware.register([
 |
 */
 Server.middleware.registerNamed({
+  auth: 'App/Middleware/Auth',
+  guest: 'App/Middleware/SilentAuth',
 })
