@@ -35,15 +35,17 @@ export default class AuthController {
         data: token,
       });
     } catch (error) {
+
+      const messageReg = error.message.match(/[^:]*$/)[0]
+      
       response.status(400).json({
         status: "error",
-        message: "Invalid email/password.",
+        message: messageReg,
       });
     }
   }
 
   async me({ auth, response }) {
-    console.log("he");
     return response.json({
       status: "success",
       data: auth.user,
