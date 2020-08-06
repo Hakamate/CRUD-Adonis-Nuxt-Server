@@ -6,9 +6,10 @@ export default class CreateProducts extends BaseSchema {
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
-      table.string('title')
-      table.string('price')
-      table.string('image')
+      table.string('title').notNullable()
+      table.string('price').notNullable()
+      table.string('image').notNullable()
+      table.text('description')
       table.timestamps(true)
     })
   }

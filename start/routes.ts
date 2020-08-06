@@ -29,7 +29,7 @@ Route.group(() => {
   Route.get('/getproduct', "ProductsController.getOneProduct")
   Route.post('/updateproduct', "ProductsController.updateProduct")
   Route.post('/deleteproduct', "ProductsController.deleteProduct")
-  Route.post('/storeproduct', "ProductsController.storeProducts")
+  Route.post('/storeproduct', "ProductsController.storeProduct")
 
 
   Route.post("login", "AuthController.login");

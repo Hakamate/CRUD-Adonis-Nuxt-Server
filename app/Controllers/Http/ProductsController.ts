@@ -2,52 +2,65 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import Products from 'App/Models/Product';
 
+import globalMethods from 'App/Services/globalMethods'
+
 export default class ProductsController {
+
   public async getProducts() {
-    
+
     const products = await Products.all();
-    
     return products;
   }
-  
-  public async getOneProduct({request} : HttpContextContract) {
 
-    const id = request.only(['id']).id;
-    
-    const product = await Products.find(id);
-    
-    return product;
-  }
+  public async getOneProduct({ request }: HttpContextContract) {
 
-  public async deleteProduct({request} : HttpContextContract) {
+    const selectedProductID = request.only(['id']).id;
 
-    const id = request.all().params.id;
-    const product = await Products.find(id);
-    
-    if(product) await product.delete();
-    
-    return product;
-  }
-
-  public async updateProduct({request} : HttpContextContract) {
-
-    const params = request.all().params;
-    
-    const product = await Products.query()
-      .where('id', params.id)
-      .update(params.product)
+    const product = await Products.find(selectedProductID);
 
     return product;
   }
 
-  public async storeProducts({request} : HttpContextContract){
-    
-    const data = request.all().params;
-    // const data = request.only(['title', 'price', 'image']);
+  public async deleteProduct({ request, response }: HttpContextContract) {
+    const selectedProductID = request.all().params.id;
+    const product = await Products.find(selectedProductID);
 
-    const products = await Products.create(data)
+    try {
+      if (product) {
+        await product.delete();
+        globalMethods.returnResponse("Deleting product successfully !", "success", response)
+      }
+    } catch (error) {
+      globalMethods.returnResponse(error.message, "error", response)
+    }
+  }
 
-    return products;
+  public async updateProduct({ request, response }: HttpContextContract) {
+    const selectedProduct = request.all().params;
+
+    try {
+      await Products.query()
+      .where('id', selectedProduct.id)
+      .update(selectedProduct.product)
+
+      globalMethods.returnResponse("Updating product successfully !", "success", response)
+    } catch (error) {
+      globalMethods.returnResponse(error.message, "error", response)
+    }
+  }
+
+  public async storeProduct({ request, response }: HttpContextContract) {
+    try {
+      const selectedProduct = request.all().params;
+      // const selectedProduct = request.only(['title', 'price', 'image', 'description']);
+      const product = await Products.create(selectedProduct)
+
+      if (product) {
+        globalMethods.returnResponse("Adding product successfully !", "success", response, product)
+      }
+    } catch (error) {
+      globalMethods.returnResponse(error.message, 'error' , response)
+    }
   }
 
 }
