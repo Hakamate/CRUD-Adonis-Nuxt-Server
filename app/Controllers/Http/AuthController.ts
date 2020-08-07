@@ -29,17 +29,20 @@ export default class AuthController {
     // // // // // //   console.log({ress});
     // // // // // // })
 
-    const userData = request.only(["email", "password"]);
     try {
+      const userData = request.only(["email", "password"]);
       await User.create(userData);
 
       const token = await auth.attempt(userData.email, userData.password);
-
+      console.log(auth);
+      const user = auth.user
+      console.log(user);
       return response.json({
         status: "success",
         data: token,
       });
     } catch (error) {
+      console.log(error);
       const messageReg = error.detail.match(/[^=]*$/)[0]
       return response.status(400).json({
         status: "error",
@@ -50,7 +53,6 @@ export default class AuthController {
 
   async login({ request, auth, response }) {
     const { email, password } = request.only(["email", "password"]);
-
     try {
       const token = await auth.attempt(email, password);
 

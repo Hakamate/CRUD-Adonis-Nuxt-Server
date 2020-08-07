@@ -49,10 +49,11 @@ export default class ProductsController {
     }
   }
 
-  public async storeProduct({ request, response }: HttpContextContract) {
+  public async storeOneProduct({ request, response }: HttpContextContract) {
     try {
-      const selectedProduct = request.all().params;
+      //for Insomnia
       // const selectedProduct = request.only(['title', 'price', 'image', 'description']);
+      const selectedProduct = request.all().params;
       const product = await Products.create(selectedProduct)
 
       if (product) {
@@ -60,6 +61,26 @@ export default class ProductsController {
       }
     } catch (error) {
       globalMethods.returnResponse(error.message, 'error' , response)
+    }
+  }
+
+  public async storeProducts({ request, response }: HttpContextContract) {
+    try {
+      //for Insomnia
+      const products:any = request.all();
+      const arrayProducts = Object.values(products)
+      
+      arrayProducts.forEach(async(product:object) => {
+        await Products.create(product)
+      })
+
+      return response.json({
+        status: "200",
+        message: "Done"
+      })
+    } 
+    catch (error) {
+      console.log(error);
     }
   }
 

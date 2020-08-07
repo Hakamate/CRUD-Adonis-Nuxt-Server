@@ -10,6 +10,7 @@
     "@adonisjs/assembler": "^2.0.0",
     "adonis-preset-ts": "^1.0.4",
     "pino-pretty": "^4.1.0",
+    "ts-node": "^8.10.2",
     "typescript": "^3.9.7",
     "youch": "^2.0.10",
     "youch-terminal": "^1.0.0"
@@ -21,6 +22,7 @@
     "@adonisjs/fold": "^6.0.0",
     "@adonisjs/lucid": "^8.2.2",
     "argon2": "^0.26.2",
+    "knex": "^0.21.2",
     "pg": "^8.3.0",
     "phc-argon2": "^1.0.10",
     "proxy-addr": "^2.0.6",

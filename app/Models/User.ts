@@ -1,9 +1,12 @@
 import { DateTime } from 'luxon'
+import Cart from 'App/Models/Cart'
 import Hash from '@ioc:Adonis/Core/Hash'
 import {
   column,
   beforeSave,
   BaseModel,
+  hasOne, 
+  HasOne,
 } from '@ioc:Adonis/Lucid/Orm'
 
 export default class User extends BaseModel {
@@ -24,6 +27,15 @@ export default class User extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @column()
+  public cartId: number
+
+  @hasOne(() => Cart, {
+    localKey: 'uuid',
+    foreignKey: 'cartUserId',
+  })
+  public cart: HasOne<typeof Cart>
 
   @beforeSave()
   public static async hashPassword (user: User) {
