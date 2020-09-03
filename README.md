@@ -1,7 +1,7 @@
-# H-Shop-API
+# CRUD-Adonis-Nuxt-Server
 
-**H-Shop-API** is an prototype API to create a easy and simple "Shop" with some feature which allow you to add product, or buy others.
-This project is used to my frontend prototype [H-Shop](https://github.com/Hakamate/H-Shop).
+**CRUD-Adonis-Nuxt-Server** is an prototype API to create a easy and simple "Shop" with some feature which allow you to add product, or buy others.
+This project is used to my frontend prototype [CRUD-Adonis-Nuxt-Front](https://github.com/Hakamate/CRUD-Adonis-Nuxt-Front).
 
 ## Features
 <b>Products Features</b>
@@ -12,21 +12,6 @@ This project is used to my frontend prototype [H-Shop](https://github.com/Hakama
 | List Products | &#10004; | Listing all Products |
 | Edit Product | &#10004; | Editing a Product to change values |
 | Delete Product | &#10004; | Removing a Product from Database|
-
-<b>Purchase Features</b>
-
-| Feature  |  Coded?       | Description  |
-|----------|:-------------:|:-------------|
-| Create Cart | &#10060; | Create a new Cart |
-| See Cart | &#10060; | See all products on the Cart |
-| Create WishList | &#10060; | Create a new WishList |
-| See Wishlist | &#10060; | See all products on the WishList |
-| Remove Product Car | &#10060; | Removing a product from the Cart |
-| Add Product Cart | &#10060; | Add a new product to the Cart |
-| Remove Product WishList | &#10060; | Removing a product from the WishList |
-| Add Product WishList | &#10060; | Add a new product to the Wishlist |
-| Order | &#10060; | Ordering all product from Cart |
-| Buy | &#10060; | Buying product from Order |
 
 <b>User Features</b>
 
@@ -48,10 +33,6 @@ Route.group(() => {
   Route.post('/deleteproduct', "ProductsController.deleteProduct")
   Route.post('/storeproduct', "ProductsController.storeOneProduct")
   Route.post('/storeproducts', "ProductsController.storeProducts")
-  
-  Route.post('/createcart', "CartsController.createCart")
-  Route.get('/getcart', "CartsController.getCart")
-  
 
   Route.post("login", "AuthController.login");
   Route.post("register", "AuthController.register");
