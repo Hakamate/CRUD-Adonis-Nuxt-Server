@@ -22,7 +22,7 @@
     "@adonisjs/fold": "^6.0.0",
     "@adonisjs/lucid": "^8.2.2",
     "argon2": "^0.26.2",
-    "knex": "^0.21.2",
+    "knex": "^2.4.0",
     "pg": "^8.3.0",
     "phc-argon2": "^1.0.10",
     "proxy-addr": "^2.0.6",
